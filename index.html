@@ -3,34 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales Summary ${seed}</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <title>Product Sales</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container text-center mt-5">
-        <h1>Sales Summary</h1>
-        <div id="total-sales" class="display-4"></div>
+    <div class="container">
+        <h1 id="title">Total Sales: $<span id="total-sales">0</span></h1>
+        <table id="product-sales" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Sales</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
+
     <script>
-        const seed = Math.floor(Math.random() * 1000); // Example seed
-        document.title = `Sales Summary ${seed}`;
+        async function fetchSalesData() {
+            const response = await fetch('data.csv');
+            const data = await response.text();
+            const rows = data.split('\n').slice(1);
+            let totalSales = 0;
 
-        fetch('data.csv')
-            .then(response => response.text())
-            .then(csvData => {
-                const lines = csvData.split('\n').slice(1);
-                let totalSales = 0;
+            rows.forEach(row => {
+                const [product, sales] = row.split(',');
+                if (product && sales) {
+                    const salesValue = parseFloat(sales);
+                    totalSales += salesValue;
 
-                lines.forEach(line => {
-                    const columns = line.split(',');
-                    if (columns[1]) {
-                        totalSales += parseFloat(columns[1]);
-                    }
-                });
+                    const tableRow = document.createElement('tr');
+                    tableRow.innerHTML = `<td>${product}</td><td>${salesValue}</td>`;
+                    document.querySelector('#product-sales tbody').appendChild(tableRow);
+                }
+            });
 
-                document.querySelector("#total-sales").textContent = totalSales.toFixed(2);
-            })
-            .catch(error => console.error('Error fetching the CSV data:', error));
+            document.getElementById('total-sales').textContent = totalSales.toFixed(2);
+        }
+
+        window.onload = fetchSalesData;
     </script>
 </body>
 </html>

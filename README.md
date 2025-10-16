@@ -13,4 +13,5 @@ To set up the project, ensure you have the following:
 
 The total sales from the CSV data will be displayed on the page. The title will include a randomly generated seed.
 
-Make sure to modify the CSV data as needed in `data.csv` to reflect your sales records.
+# Improvements
+In this version, a Bootstrap table has been added to display each product alongside its total sales. The total sales calculation has been enhanced to ensure accuracy after rendering the product list. The table structure allows for better organization and presentation of sales data.

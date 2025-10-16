@@ -1,12 +1,15 @@
 # Overview
-This is a single-page web application that fetches sales data from a CSV file and summarizes the total sales amount. It utilizes Bootstrap 5 for styling and is designed to be simple and efficient.
+This web application is a single-page site that fetches sales data from a CSV file, sums the sales column, and displays the total sales amount. It utilizes Bootstrap 5 for styling and provides a responsive design.
 
 # Setup
-1. Ensure you have a web server running, as fetching local files directly may not work due to browser security policies.
-2. Place `data.csv` in the same directory as `index.html`.
+1. Ensure you have a server environment to serve the HTML file and the `data.csv` file.
+2. Place the `data.csv` file in the same directory as the `index.html` file.
 
 # Usage
-1. Open `index.html` in a web browser.
-2. The application will automatically fetch `data.csv`, calculate the total sales, and display it on the page.
+1. Open the `index.html` file in a web browser.
+2. The application will fetch the sales data from `data.csv`, calculate the total sales, and display it on the page with a header.
 
-The application is responsive and is styled using Bootstrap 5 to ensure a clean and modern look. The title of the page will include a random seed for uniqueness.
+# Improvements
+- This version includes dynamic title generation based on a random seed.
+- The app now fetches the CSV data using the Fetch API, ensuring it processes the data correctly.
+- Bootstrap 5 is loaded from jsdelivr for better styling and responsiveness.

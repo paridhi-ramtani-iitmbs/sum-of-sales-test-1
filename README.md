@@ -1,18 +1,16 @@
-# Auto-generated README (Round 1)
+# Overview
+This is a single-page web application that fetches sales data from a CSV file, sums up the sales values, and displays the total on the page. The application uses Bootstrap 5 for styling and is fully self-contained.
 
-**Project brief:** Publish a single-page site that fetches data.csv from attachments, sums its sales column, sets the title to 'Sales Summary ${seed}', displays the total inside #total-sales, and loads Bootstrap 5 from jsdelivr.
+# Setup
+To set up the project, ensure you have the following:
+- A web server to serve the `index.html` file.
+- The `data.csv` file in the same directory as the `index.html`.
 
-**Attachments:**
-- data.csv (text/csv): preview: product,sales,region\nA,100,North\nB0,200,South
+# Usage
+1. Place the `index.html` and `data.csv` files in the same directory.
+2. Run a local web server (e.g., using Python's `http.server`).
+3. Open your web browser and navigate to `http://localhost:<port>/index.html` to view the application.
 
-**Checks to meet:**
-js: document.title === `Sales Summary ${seed}`
-js: !!document.querySelector("link[href*='bootstrap']")
-js: Math.abs(parseFloat(document.querySelector("#total-sales").textContent) - 500) < 0.01
+The total sales from the CSV data will be displayed on the page. The title will include a randomly generated seed.
 
-## Setup
-1. Open `index.html` in a browser.
-2. No build steps required.
-
-## Notes
-This README was generated as a fallback (OpenAI did not return an explicit README).
+Make sure to modify the CSV data as needed in `data.csv` to reflect your sales records.
